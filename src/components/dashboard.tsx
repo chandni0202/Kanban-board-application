@@ -79,7 +79,8 @@ const Dashboard = () => {
               <div key={key} className='column'>
                 <div className='header-card'>
                   <div className='header-status'>
-                    <img src={getImageSrc(key)} alt="status-img" width='16px' height='16px' />
+                  {groupingOption === 'User' ? <Icon color={getRandomColor(key)}/> : 
+                    <img src={getImageSrc(key)} alt="status-img" width='16px' height='16px' />}
                     <div className='column-header'>{header}</div>
                     {sortedTicketsLength}
                   </div>
@@ -92,7 +93,7 @@ const Dashboard = () => {
                     content={truncateTextByCharCount(item.title, 50)}
                     tag={item.tag[0]}
                     image={groupingOption !== 'Priority' ? PriorityImage(item.priority) : ''}
-                    userImg={groupingOption !== 'User' ? <Icon color={getRandomColor()}/> : ''}
+                    userImg={groupingOption !== 'User' ? <Icon color={getRandomColor(item.userId)}/> : ''}
                     titleImg={groupingOption !== 'Status' ? StatusImage(item.status) : ''}
                   />
                 ))}
