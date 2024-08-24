@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useData } from '../customHook/useData';
 import { PriorityImage, StatusImage, truncateTextByCharCount, 
-  priorityTextMap, sortTickets } from '../utilities/utility';
+  priorityTextMap, sortTickets, getRandomColor } from '../utilities/utility';
 import {orderedStatuses, priorityOrder} from '../utilities/constant';
 import Card from '../componentsLib/card';
 import Dropdown from '../componentsLib/dropdown/dropdown';
 import ColumnHeaderBtn from './subComponents/columnHeaderBtn';
+import  Icon from '../icon/profileIcon';
 import './dashboard.css';
 
 const Dashboard = () => {
@@ -91,7 +92,7 @@ const Dashboard = () => {
                     content={truncateTextByCharCount(item.title, 50)}
                     tag={item.tag[0]}
                     image={groupingOption !== 'Priority' ? PriorityImage(item.priority) : ''}
-                    userImg={groupingOption !== 'User' ? '/profile.svg' : ''}
+                    userImg={groupingOption !== 'User' ? <Icon color={getRandomColor()}/> : ''}
                     titleImg={groupingOption !== 'Status' ? StatusImage(item.status) : ''}
                   />
                 ))}
