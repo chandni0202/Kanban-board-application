@@ -6,7 +6,7 @@ interface CardProps {
   content?: string;
   image?: string;
   tag?: string;
-  userImg?: string;
+  userImg?: any;
   titleImg?: string;
 }
 
@@ -18,10 +18,8 @@ const Card: React.FC<CardProps> = ({
   userImg,
   titleImg
 }) => {
-  const renderUserImg = userImg && (
-    <img src={userImg} width="16px" height="16px" alt="User" className="card-image" />
-  );
 
+  const renderUserImg = <div className="card-image">{userImg}</div> 
   const renderTitleImg = titleImg && (
     <img src={titleImg} alt="Title" height="12" width="12" />
   );

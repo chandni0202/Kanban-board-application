@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useData } from '../customHook/useData';
 import { PriorityImage, StatusImage, truncateTextByCharCount, 
-  priorityTextMap, sortTickets } from '../utilities/utility';
+  priorityTextMap, sortTickets, getRandomColor } from '../utilities/utility';
 import {orderedStatuses, priorityOrder} from '../utilities/constant';
 import Card from '../componentsLib/card';
 import Dropdown from '../componentsLib/dropdown/dropdown';
 import ColumnHeaderBtn from './subComponents/columnHeaderBtn';
+import  Icon from '../icon/profileIcon';
 import './dashboard.css';
 
 const Dashboard = () => {
@@ -78,7 +79,8 @@ const Dashboard = () => {
               <div key={key} className='column'>
                 <div className='header-card'>
                   <div className='header-status'>
-                    <img src={getImageSrc(key)} alt="status-img" width='16px' height='16px' />
+                  {groupingOption === 'User' ? <Icon color={getRandomColor(key)}/> : 
+                    <img src={getImageSrc(key)} alt="status-img" width='16px' height='16px' />}
                     <div className='column-header'>{header}</div>
                     {sortedTicketsLength}
                   </div>
@@ -91,7 +93,7 @@ const Dashboard = () => {
                     content={truncateTextByCharCount(item.title, 50)}
                     tag={item.tag[0]}
                     image={groupingOption !== 'Priority' ? PriorityImage(item.priority) : ''}
-                    userImg={groupingOption !== 'User' ? '/profile.svg' : ''}
+                    userImg={groupingOption !== 'User' ? <Icon color={getRandomColor(item.userId)}/> : ''}
                     titleImg={groupingOption !== 'Status' ? StatusImage(item.status) : ''}
                   />
                 ))}

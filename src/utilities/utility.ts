@@ -26,7 +26,7 @@ export const StatusImage = (status: string) => {
   } else if(status === 'Cancelled'){
     return '/Cancelled.svg';
   } else{
-    return '/profile.svg';
+    return '';
   }
 };
 
@@ -59,3 +59,25 @@ export const sortTickets = (tickets: any[], orderingOption: string) => {
   }
   return tickets;
 };
+
+const predefinedColors = [
+  '#FF0000', // Red
+  '#FFFF00', // Yellow
+  '#0000FF', // Blue
+  '#00FF00', // Green
+  '#000000', // Black
+  '#8A2BE2'  // Violet
+];
+
+export const getRandomColor = (id: string): string => {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    const char = id.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+  }
+  const index = Math.abs(hash) % predefinedColors.length;
+  
+  return predefinedColors[index];
+};
+
+

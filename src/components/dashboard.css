@@ -42,7 +42,10 @@
     display: flex;
     >img{
         margin-top: 2px;
-    }
+    };
+    >svg{
+      margin-top: 2px;
+  }
   }
 
   .img-3dot{
